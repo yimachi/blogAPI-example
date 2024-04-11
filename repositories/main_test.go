@@ -62,7 +62,8 @@ func TestMain(m *testing.M) {
 }
 
 func setupTestData() error {
-	cmd := exec.Command("mysql", "-h", "127.0.0.1", "-u", "docker", "sampledb", "--password=docker", "-e", "source ./testdata/setupDB.sql")
+	// dbuser、dbname、passは適宜変更して使う
+	cmd := exec.Command("mysql", "-h", "127.0.0.1", "-u", "dbuser", "dbname", "pass", "-e", "source ./testdata/setupDB.sql")
 	err := cmd.Run()
 	if err != nil {
 		return err
@@ -71,7 +72,8 @@ func setupTestData() error {
 }
 
 func cleanupDB() error {
-	cmd := exec.Command("mysql", "-h", "127.0.0.1", "-u", "docker", "sampledb", "--password=docker", "-e", "source ./testdata/cleanupDB.sql")
+	// dbuser、dbname、passは適宜変更して使う
+	cmd := exec.Command("mysql", "-h", "127.0.0.1", "-u", "dbuser", "dbname", "pass", "-e", "source ./testdata/cleanupDB.sql")
 	err := cmd.Run()
 	if err != nil {
 		return err
